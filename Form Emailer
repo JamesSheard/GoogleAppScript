@@ -1,0 +1,34 @@
+//Global Variables
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var tsSheet = ss.getSheetByName("Form");
+  var tsRows = parseInt(tsSheet.getLastRow());
+  var tsRange = tsSheet.getRange("G2:G"+tsRows);
+  var monitors = tsRange.getValues();
+  var monitorNeedsTagging = [];
+
+var templateSheet = ss.getSheets()[1];
+var emailTemplate = templateSheet.getRange("A1").getValue();
+
+for (var i = 2; i < 200; i++) {
+  if(tsSheet.getRange("G" + i).getValue() == "none"){
+    monitorNeedsTagging.push(tsSheet.getRange("B" + i).getValue())
+  }
+  else{
+    }
+}
+
+      monitorEmail();
+  function monitorEmail() {
+    for (var i = 0; i < monitorNeedsTagging.length; i++) {
+  var recipient="person@person.com"; // Who the email is sent to
+  var subject= monitorNeedsTagging[i] + " - Monitor Asset tag needed"; // Subject of the message
+  var message= monitorNeedsTagging[i] + "'s monitor needs an asset tag"; // Contents of the email
+  MailApp.sendEmail(recipient, subject, message);
+  Logger.log(subject);
+};
+}
+
+function start() {
+};
+
+Logger.log(monitorNeedsTagging);

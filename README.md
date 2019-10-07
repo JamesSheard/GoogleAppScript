@@ -1,3 +1,5 @@
+This repo is nolonger maintained.
+
 # James's GoogleAppScript library!
 All my app script creations.
 
